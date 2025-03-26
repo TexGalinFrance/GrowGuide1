@@ -1,20 +1,41 @@
 {
   "name": "GrowGuide",
-  "description": "An interactive guide for growing plants, integrated into Showpad.",
-  "version": "1.0.0",
-  "author": "TexGalinFrance",
-  "icon": "https://thegrowguide.netlify.app/favicon.ico",
-  "url": "https://thegrowguide.netlify.app/",
   "type": "experience",
+  "version": "1.0.0",
+  "description": "GrowGuide is an interactive plant growing guide integrated into Showpad.",
+  "developer": {
+    "name": "Your Name or Company",
+    "email": "your-email@example.com",
+    "website": "https://thegrowguide.netlify.app/"
+  },
+  "homepage_url": "https://thegrowguide.netlify.app/",
+  "app_url": "https://thegrowguide.netlify.app/",
+  "icon_url": "https://thegrowguide.netlify.app/favicon.ico",
+  "allowed_hosts": [
+    "thegrowguide.netlify.app"
+  ],
   "permissions": {
     "scopes": [
       "user.profile.read",
       "library.read"
     ]
   },
-  "config": {
+  "settings": {
     "width": "100%",
     "height": "100%",
     "theme": "light"
+  },
+  "translations": {
+    "en": {
+      "title": "GrowGuide",
+      "description": "An interactive plant-growing experience for Showpad."
+    }
+  },
+  "custom_fields": {
+    "api_key": {
+      "type": "string",
+      "required": false,
+      "description": "API Key for third-party integrations"
+    }
   }
 }

@@ -1,0 +1,359 @@
+/**** Site Header ****/
+
+/* Banner header */
+.banner-header {
+    width: 100%;
+    height: 140px;  /* Keep the desired height of the banner consistent */
+    background-color: green;  /* Background color for the header */
+    position: sticky;  /* Make the header stick at the top of the page */
+    top: 0;  /* Ensure it stays at the top */
+    left: 0;
+    z-index: 1000;  /* Keep the header above other content */
+    text-align: center;  /* Centers the text */
+    display: flex;
+    justify-content: center;  /* Ensure header content is centered */
+    align-items: center;  /* Vertically center the content */
+    padding: 0;  /* Ensure no extra padding */
+}
+
+/* Banner image */
+.banner-img {
+    width: 100%;   /* Stretch the image across the width */
+    height: auto;  /* Maintain aspect ratio */
+    object-fit: cover;  /* Ensures image covers the area */
+    display: block;  /* Remove inline-block space */
+}
+
+/* Container for the header subtitle */
+.banner-text {
+    position: absolute;
+    top: 50%;  /* Adjust the position vertically to the center */
+    left: 50%;
+    transform: translate(-50%, -50%);  /* Vertically and horizontally center */
+    color: white;
+    text-shadow: 2px 2px 4px rgba(128,0,128,0.6); /* Adds shadow to text for readability */
+    margin: 0;
+}
+
+/* Logo and title container */
+.logo-title-container {
+    display: flex;
+    justify-content: center;  /* Centers logo and title */
+    align-items: center;
+    margin: 0;  /* Remove any margin that might cause shifting */
+    padding: 0;  /* Ensure no unwanted padding */
+}
+
+/* Logo image */
+.logo {
+    width: 50px;
+    height: auto;
+    margin-right: 10px; /* Space between logo and title */
+}
+
+/* Title styling */
+.logo-title-container h1 {
+    font-size: 3em;
+    margin: 0;
+    color: #fff; /* White color for visibility */
+    text-shadow: 4px 4px rgba(128,0,128,0.6);
+}
+
+/* Banner subtitle */
+.banner-text p {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+/**** End Site Header ***/
+
+/* General page styling */
+main {
+    text-align: center;
+    flex-grow: 1;  /* Main content will grow to fill available space */
+}
+
+/* Universal reset for margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header styles for text centering */
+h1, h2 {
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 10px 0;
+}
+
+/* Sticky Navigation Bar */
+nav {
+    position: sticky;
+    top: 0;
+    background-color: #fff;  /* White background */
+    z-index: 1000;  /* Keeps nav on top */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow to navbar */
+    padding: 10px 0;
+}
+
+/* Navigation links styling */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Center navigation links */
+    gap: 20px;  /* Space between links */
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;  /* Link color */
+    font-weight: bold;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for nav links */
+nav ul li a:hover {
+    background-color: #4CAF50;  /* Hover color */
+    color: white;
+}
+
+/* Banner Container Styling */
+.banner-container {
+    display: flex;
+    flex-direction: column; /* Stack banners vertically */
+    align-items: center; /* Center banners horizontally */
+    gap: 20px; /* Space between banners */
+    padding: 20px;
+    width: 100%;
+}
+
+/* Individual banner styling */
+.banner {
+    width: 90%; /* Set the width of the banner */
+    height: 450px; /* Set the height of the banner */
+    background-size: cover; /* Ensure background image covers the banner */
+    background-position: center;
+    background-color: #dfe6e9;  /* Fallback color */
+    display: flex;
+    flex-direction: column;  /* Stack content vertically inside banner */
+    justify-content: center;  /* Center text vertically */
+    align-items: center;  /* Center text horizontally */
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;  /* Hover effect on banner */
+    position: relative;
+    margin-top: 20px;
+}
+
+/* Overlay behind the banner content */
+.banner-content {
+    background: rgba(0, 128, 0, 0.3);  /* Semi-transparent green overlay */
+    padding: 20px;
+    border-radius: 3em;
+    border: 2px solid white;
+    width: 100%;
+    width: fit-content; /* Ensures box only wraps text */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content inside overlay */
+}
+
+/* Text styles inside the banner */
+.banner-content h2,
+.banner-content p {
+    color: white;  /* White text for contrast */
+    font-size: 2em;
+    font-family: 'Poppins', sans-serif; /* Consistent font */
+    text-shadow: 
+        1px 1px 2px green,    /* Shadow effect */
+        -1px -1px 2px green,
+        1px -1px 2px green,
+        -1px 1px 2px green;
+}
+
+/* Hover effect on banner */
+.banner:hover {
+    transform: scale(1.02); /* Slightly enlarge the banner on hover */
+}
+
+/* Button styles */
+.banner-content button {
+    font-size: 1em;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    color: white;
+    background-color:rgba(0, 128, 0, 0.9);  /* Button color */
+    padding: 10px 20px;
+    border-radius: 2em;
+    border: 2px solid white; /* Button border */
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect for buttons */
+.banner button:hover {
+    background-color: rgba(128,0,128,0.6); /* Change background on hover */
+}
+
+/* Media Queries for responsive design */
+@media (max-width: 768px) {
+    .banner {
+        width: 90%;  /* Slightly narrower on smaller screens */
+        height: auto;  /* Allow height to adjust */
+        padding: 30px;
+    }
+}
+
+/* Individual banner background images */
+#ornamental-banner {
+    background-image: url('flowers2.svg');
+    background-size: cover;
+    background-position: center;
+    background-color: ghostwhite;
+}
+
+#edible-banner {
+    background-image: url('veggie.svg');
+    background-size: cover;
+    background-position: center;
+    background-color: ghostwhite;
+}
+
+/* Ensure body takes up full height of viewport */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding-top: 0;
+}
+
+/* Flexbox layout for the body to push footer to the bottom */
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;  /* Push footer to the bottom */
+    align-items: stretch; /* Make sure content stretches to fill available space */
+    background-color: #fffefb; /* Soft pastel yellow */
+}
+
+/* Footer styling */
+footer {
+    font-family: 'Poppins', sans-serif;
+    background-color: green;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    margin-top: auto;  /* Ensure footer stays at the bottom */
+}
+
+/* Ensure the header container doesn't add unwanted space */
+#header-container {
+    margin: 0;
+    padding: 0;
+    height: 0;
+    visibility: hidden;  /* Initially hidden */
+}
+
+/* When content is dynamically added, make it visible */
+#header-container.loaded {
+    height: auto;
+    visibility: visible;
+}
+
+/* Breadcrumb Styling */
+.breadcrumbs {
+    margin-top: 10px; /* Ensure no space above breadcrumbs */
+    padding-top: 0;  /* Remove any padding above the breadcrumbs */
+    margin-bottom: 10px; /* Optional: small gap below breadcrumbs */
+    margin-left: 20px;
+    font-size: 1.1em;
+    background-color: transparent;  /* Set background to transparent */
+    box-shadow: none;  /* Remove any box-shadow */
+    color: green;
+}
+
+.breadcrumbs a {
+    font-family: 'Poppins', sans-serif; /* Consistent font */
+    text-decoration: none;
+    color: #4CAF50;
+}
+
+.breadcrumbs span {
+    color: #800080;
+    background-color: rgba(128, 0, 128, 0.1);; /* Background color for the current page */
+    padding: 5px 10px; /* Padding for better readability */
+    border-radius: 4px; /* Rounded corners */
+}
+
+/* Breadcrumbs home icon */
+.breadcrumbs .home-link i {
+    font-size: 1.2em;  /* Adjust size of the home icon */
+    color: #4CAF50;  /* Change to your preferred color */
+    margin-right: 5px;  /* Space between icon and text */
+}
+
+/* Plant Categories Section */
+.plant-categories {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* Individual category card */
+.category {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 40%;
+}
+
+/* Category heading and paragraph */
+.category h3 {
+    font-size: 1.6em;
+    margin-bottom: 10px;
+}
+
+.category p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+/* Category button styling */
+.category button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hover effect for category buttons */
+.category button:hover {
+    background-color: #45a049;
+}
+
+/* Initial state of the card */
+#sun-loving-card {
+    transition: all 0.3s ease;  /* Optional transition */
+}
+
+/* When hidden, it won't take up space */
+#sun-loving-card.hidden {
+    display: none;
+}

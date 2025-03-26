@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ornamental Plants - GrowGuide</title>
+    <link rel="stylesheet" href="resources/styles.css">
+
+    <!-- Font Awesome CDN -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- Header Section (Dynamically loaded via JS) -->
+    <div id="header-container"></div>
+
+    <!-- Breadcrumbs Section -->
+    <nav class="breadcrumbs"></nav>
+
+    <main>
+        <h2>Discover the Best Ornamental Plants for Your Garden</h2>
+        <p>Learn about various flowers and plants that thrive in sunny and shady conditions.</p>
+        
+        <!-- Plant Categories Section -->
+        <div class="plant-categories">
+            <div class="category">
+                <h3>Sun-Loving Plants</h3>
+                <p>These plants thrive in full sun<br /> and are perfect for bright spots in your garden.</p>
+                <button id="toggle-sun-loving">Show Plants</button>
+
+                <!-- Hidden list of plants -->
+                <div id="plant-list" style="display: none;">
+                    <ul>
+                        <li>Plant 1</li>
+                        <li>Plant 2</li>
+                        <li>Plant 3</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="category">
+                <h3>Shade-Loving Plants</h3>
+                <p>These plants do well in shaded areas,<br /> providing beauty in spots that don't get much sun.</p>
+                <button onclick="window.location.href='shade-plants.html'">Learn More</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>Powered by nature ☀️ | GrowGuide © 2025</p>
+    </footer>
+
+    <!-- Linking the JS file to dynamically load the header and breadcrumbs -->
+    <script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+ "$schema": "https://schema.showpad.com/app/manifest.v2.json",
+ "schema": {
+ "type": "app-manifest",
+ "version": 2
+    },
+"appKey": "spteststacieloving.showpad.biz",
+"name": "GrowGuide",
+"version": "1.0.0",
+"description": {
+    "short": "Grow things",
+        "full": "Select plants based on sunny or shadey conditions."
+    },
+"icon": "gardening.png",
+"developer": {
+    "name": "Stacie Loving",
+    "websiteUrl": "https://spteststacieloving.showpad.biz"
+    },
+"experienceTypes": [
+    {
+      "extensionKey": "my-experience",
+      "name": "GrowGuide",
+      "description": "Explore plants suitable for sunny or shady conditions",
+      "resources": {
+          "folder": "resources"
+    }
+  }
+ ]
+}  

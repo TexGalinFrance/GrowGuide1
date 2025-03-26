@@ -53,8 +53,12 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(response => response.text())
     .then(data => {
       const headerContainer = document.getElementById('header-container');
-      headerContainer!.innerHTML = data;
-      headerContainer!.classList.add('header-loaded'); // Ensures proper styling is applied
+      if (headerContainer) {
+        headerContainer.innerHTML = data;
+        headerContainer.classList.add('header-loaded'); // Ensures proper styling is applied
+      } else {
+        console.error('Header container not found!');
+      }
     })
     .catch(error => {
       console.error('Error loading header:', error);

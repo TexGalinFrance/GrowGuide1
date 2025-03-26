@@ -1,79 +1,82 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Get the full current path
+import { Showpad } from '@showpad/experience-app-sdk';
+import './style.css';
+
+interface Config extends Showpad.EnrichedConfigJSON {
+  labels: {
+    label_example: Showpad.Label;
+  };
+  contents: {
+    asset_example: Showpad.ContentAsset;
+  };
+}
+
+// Make sure the index.html has a div with id="app"
+const app = document.querySelector<HTMLDivElement>('#app')!;
+
+const main = async (): Promise<void> => {
+  // Always wait for ShowpadLib to be loaded
+  await Showpad.onShowpadLibLoaded();
+
+  try {
+    // Destructure labels, contents, and assets retrieved from Showpad.parseEnrichedConfig()
+    const { labels, contents, assets } = await Showpad.parseEnrichedConfig<Config>();
+
+    // Start with the "Home" link in the breadcrumbs
+    const breadcrumbContainer = document.querySelector('.breadcrumbs')!;
+    breadcrumbContainer.innerHTML = '<a href="index.html"><i class="fas fa-home"></i></a> &gt; ';
+    
+    // Set the title for the current page in the breadcrumbs
     const currentUrl = window.location.pathname;
+    const pageName = currentUrl.split('/').pop()!.replace('.html', '').replace(/-/g, ' ').toUpperCase();
+    breadcrumbContainer.innerHTML += `<span>${pageName}</span>`;
 
-    // Split the URL into parts by slashes
-    const urlParts = currentUrl.split('/').filter(Boolean);  // Filter out empty parts
+    // Display the title in the app dynamically
+    app.innerHTML = `<h1>${labels.label_example.value}</h1>`;
 
-    // Get the last part of the URL which is the actual page name (without folder)
-    const pageName = urlParts[urlParts.length - 1];  // This will be the page name, e.g., "ornamental-plants.html"
-
-    // Initialize breadcrumb container
-    const breadcrumbContainer = document.querySelector(".breadcrumbs");
-    breadcrumbContainer.innerHTML = '';  // Clear any existing breadcrumbs
-
-    // Start with the "Home" link
-    breadcrumbContainer.innerHTML = '<a href="index.html">Home</a>';
-
-    // Add a separator ">" for better readability
-    breadcrumbContainer.innerHTML += ' &gt; ';
-
-    // Create and append the breadcrumb for the current page (without file extension)
-    const pageTitle = pageName.replace('.html', '').replace(/-/g, ' ').toUpperCase();  // Remove .html and replace hyphens with spaces
-
-    const link = document.createElement('a');
-    link.href = currentUrl;  // The current page's URL
-    link.textContent = pageTitle.charAt(0) + pageTitle.slice(1).toLowerCase();  // Capitalize first letter
-
-    // Append the link to the breadcrumbs
-    breadcrumbContainer.appendChild(link);
-});
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Load the header dynamically
-    fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
-            const headerContainer = document.getElementById('header-container');
-            headerContainer.innerHTML = data;
-
-            // After loading header, we can ensure CSS is applied
-            headerContainer.classList.add('header-loaded');  // Example class to reflow the header
-        })
-        .catch(error => {
-            console.error('Error loading header:', error);
-        });
-});
-
-// Dynamically load the header
-document.getElementById('header-container').classList.add('loaded'); `
-    <header>
-        <h1><img src="images/gardening.png" alt="GrowGuide Logo" class="logo"> GrowGuide</h1>
-        <p>Discover beautiful plants for your garden</p>
-    </header>
-`;
-
-// Dynamically generate the breadcrumb navigation
-window.onload = function() {
-    document.querySelector('.breadcrumbs').innerHTML = `
-        <a href="index.html"><i class="fas fa-home"></i></a> > <span>Ornamental Plants</span>
-    `;
+    // Example for showing an asset (optional based on your needs)
+    const exampleAsset = contents.asset_example.result?.[0];
+    if (exampleAsset) {
+      const button = document.createElement('button');
+      button.innerHTML = `Open ${exampleAsset.displayName}`;
+      button.addEventListener('click', () => Showpad.openAssetViewer(exampleAsset.slug));
+      app.appendChild(button);
+    }
+  } catch (error) {
+    // Show a native error toast
+    Showpad.handleErrorWithToast(error);
+  }
 };
 
-// sun plants toggle
-document.getElementById("toggle-sun-loving").addEventListener("click", function() {
-    var plantList = document.getElementById("plant-list");
-    var sunLovingCard = document.getElementById("sun-loving-card");
+document.addEventListener('DOMContentLoaded', () => {
+  // Dynamically load the header content
+  fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+      const headerContainer = document.getElementById('header-container');
+      headerContainer!.innerHTML = data;
+      headerContainer!.classList.add('header-loaded'); // Ensures proper styling is applied
+    })
+    .catch(error => {
+      console.error('Error loading header:', error);
+    });
 
-    // Toggle visibility of the plant list
-    if (plantList.style.display === "none") {
-        plantList.style.display = "block"; // Show the list
-        sunLovingCard.style.display = "none"; // Hide the card
-    } else {
-        plantList.style.display = "none"; // Hide the list
-        sunLovingCard.style.display = "block"; // Show the card
+  // Sun-loving plants toggle functionality
+  const sunLovingCard = document.getElementById("sun-loving-card");
+  const plantList = document.getElementById("plant-list");
+
+  document.getElementById("toggle-sun-loving")?.addEventListener("click", () => {
+    // Toggle visibility of the sun-loving card and the plant list
+    if (sunLovingCard && plantList) {
+      if (plantList.style.display === "none") {
+        plantList.style.display = "block";  // Show the plant list
+        sunLovingCard.style.display = "none";  // Hide the sun-loving card
+      } else {
+        plantList.style.display = "none";  // Hide the plant list
+        sunLovingCard.style.display = "block";  // Show the sun-loving card
+      }
     }
+  });
+
+  // Run the main function
+  main();
 });
-
-

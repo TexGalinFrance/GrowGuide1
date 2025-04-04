@@ -1,36 +1,64 @@
 import { Showpad } from '@showpad/experience-app-sdk';
 import './style.css';
 
-// Make sure the index.html has a div with id="app"
+// Ensure the app container exists
 const app = document.querySelector('#app');
 
 const main = async () => {
+  console.log("Initializing Showpad app...");
+
   await Showpad.onShowpadLibLoaded();
 
   try {
     const { labels, contents, assets } = await Showpad.parseEnrichedConfig();
+    console.log("Showpad Config Loaded:", labels, contents, assets);
 
     // Breadcrumbs logic
     const breadcrumbContainer = document.querySelector('.breadcrumbs');
-    breadcrumbContainer.innerHTML = '<a href="index.html"><i class="fas fa-home"></i></a> &gt; ';
 
-    const currentUrl = window.location.pathname;
-    const pageName = currentUrl.split('/').pop().replace('.html', '').replace(/-/g, ' ').toUpperCase();
-    breadcrumbContainer.innerHTML += `<span>${pageName}</span>`;
+    if (breadcrumbContainer) {
+      console.log("Breadcrumb container found.");
 
-    app.innerHTML = `<h1>${labels.label_example.value}</h1>`;
+      // Start with the Home link
+      breadcrumbContainer.innerHTML = '<a href="index.html"><i class="fas fa-home"></i> Home</a> &gt; ';
 
-    const exampleAsset = contents.asset_example.result?.[0];
+      // Get current page name
+      const currentUrl = window.location.pathname;
+      const pageName = currentUrl.split('/').pop()?.replace('.html', '').replace(/-/g, ' ');
+
+      if (pageName && pageName.toLowerCase() !== "index") {
+        const formattedPageName = pageName.charAt(0).toUpperCase() + pageName.slice(1);
+        breadcrumbContainer.innerHTML += `<span>${formattedPageName}</span>`;
+      }
+    } else {
+      console.warn("Breadcrumb container not found. Skipping breadcrumb update.");
+    }
+
+    // Display the label as our title
+    if (app) {
+      app.innerHTML = `<h1>${labels?.label_example?.value || "Welcome to GrowGuide"}</h1>`;
+    }
+
+    // Example for showing an asset (optional)
+    const exampleAsset = contents.asset_example?.result?.[0];
     if (exampleAsset) {
       const button = document.createElement('button');
       button.innerHTML = `Open ${exampleAsset.displayName}`;
       button.addEventListener('click', () => Showpad.openAssetViewer(exampleAsset.slug));
-      app.appendChild(button);
+      app?.appendChild(button);
     }
   } catch (error) {
+    console.error("Error loading Showpad config:", error);
     Showpad.handleErrorWithToast(error);
   }
 };
+
+// Run the script after DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+  console.log("DOM fully loaded, running main script...");
+  main();
+});
+
 
 /*
 

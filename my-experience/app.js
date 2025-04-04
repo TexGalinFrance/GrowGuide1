@@ -6,11 +6,16 @@ const main = async () => {
   console.log("Initializing Showpad app...");
 
   // Wait for Showpad lib to load
-  await Showpad.onShowpadLibLoaded();
+  if (window.Showpad) {
+    await Showpad.onShowpadLibLoaded();
+  } else {
+    console.error('Showpad library is not loaded.');
+    return;
+  }
 
   try {
     // Parse enriched config data from Showpad
-    const { labels = {}, contents = {}, assets = [] } = await Showpad.parseEnrichedConfig();
+    const { labels, contents, assets } = await Showpad.parseEnrichedConfig();
     console.log("Showpad Config Loaded:", labels, contents, assets);
 
     // Handle breadcrumbs logic
@@ -68,8 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log("DOM fully loaded, running main script...");
   main();
 });
-
-
 
 
 

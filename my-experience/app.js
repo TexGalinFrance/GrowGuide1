@@ -1,5 +1,3 @@
-
-
 // Ensure the app container exists
 const app = document.querySelector('#app');
 
@@ -12,7 +10,7 @@ const main = async () => {
 
   try {
     // Parse enriched config data from Showpad
-    const { labels, contents, assets } = await Showpad.parseEnrichedConfig();
+    const { labels = {}, contents = {}, assets = [] } = await Showpad.parseEnrichedConfig();
     console.log("Showpad Config Loaded:", labels, contents, assets);
 
     // Handle breadcrumbs logic
@@ -70,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log("DOM fully loaded, running main script...");
   main();
 });
+
 
 
 

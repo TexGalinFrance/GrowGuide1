@@ -1,4 +1,4 @@
-import 'style.css';
+
 
 // Ensure the app container exists
 const app = document.querySelector('#app');

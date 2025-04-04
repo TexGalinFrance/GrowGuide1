@@ -32,6 +32,8 @@ const main = async () => {
   }
 };
 
+/*
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('JavaScript is running');
   
@@ -58,3 +60,4 @@ document.addEventListener('DOMContentLoaded', () => {
   // Other logic like sun-loving plants toggle, etc.
   main();
 });
+*/

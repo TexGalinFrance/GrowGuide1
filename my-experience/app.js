@@ -24,11 +24,15 @@ const main = async () => {
 
       // Get current page name
       const currentUrl = window.location.pathname;
-      const pageName = currentUrl.split('/').pop()?.replace('.html', '').replace(/-/g, ' ');
+      console.log("Current URL:", currentUrl);
+
+      let pageName = currentUrl.split('/').pop()?.replace('.html', '').replace(/-/g, ' ');
 
       if (pageName && pageName.toLowerCase() !== "index") {
-        const formattedPageName = pageName.charAt(0).toUpperCase() + pageName.slice(1);
-        breadcrumbContainer.innerHTML += `<span>${formattedPageName}</span>`;
+        pageName = pageName.charAt(0).toUpperCase() + pageName.slice(1);
+        breadcrumbContainer.innerHTML += `<span>${pageName}</span>`;
+      } else {
+        console.log("Index page detected, no additional breadcrumb needed.");
       }
     } else {
       console.warn("Breadcrumb container not found. Skipping breadcrumb update.");
@@ -37,15 +41,21 @@ const main = async () => {
     // Display the label as our title
     if (app) {
       app.innerHTML = `<h1>${labels?.label_example?.value || "Welcome to GrowGuide"}</h1>`;
+    } else {
+      console.warn("App container not found. Skipping title update.");
     }
 
     // Example for showing an asset (optional)
     const exampleAsset = contents.asset_example?.result?.[0];
     if (exampleAsset) {
+      console.log("Example asset found:", exampleAsset);
+
       const button = document.createElement('button');
       button.innerHTML = `Open ${exampleAsset.displayName}`;
       button.addEventListener('click', () => Showpad.openAssetViewer(exampleAsset.slug));
       app?.appendChild(button);
+    } else {
+      console.log("No example asset found.");
     }
   } catch (error) {
     console.error("Error loading Showpad config:", error);
@@ -53,11 +63,12 @@ const main = async () => {
   }
 };
 
-// Run the script after DOM is fully loaded
+// Ensure script runs at the correct time
 document.addEventListener('DOMContentLoaded', () => {
   console.log("DOM fully loaded, running main script...");
   main();
 });
+
 
 
 /*

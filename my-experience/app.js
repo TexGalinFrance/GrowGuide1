@@ -1,5 +1,4 @@
-import { Showpad } from '@showpad/experience-app-sdk';
-import './style.css';
+import 'style.css';
 
 // Ensure the app container exists
 const app = document.querySelector('#app');

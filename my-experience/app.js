@@ -4,16 +4,19 @@ import './style.css';
 // Ensure the app container exists
 const app = document.querySelector('#app');
 
+// Main function to load and display content
 const main = async () => {
   console.log("Initializing Showpad app...");
 
+  // Wait for Showpad lib to load
   await Showpad.onShowpadLibLoaded();
 
   try {
+    // Parse enriched config data from Showpad
     const { labels, contents, assets } = await Showpad.parseEnrichedConfig();
     console.log("Showpad Config Loaded:", labels, contents, assets);
 
-    // Breadcrumbs logic
+    // Handle breadcrumbs logic
     const breadcrumbContainer = document.querySelector('.breadcrumbs');
 
     if (breadcrumbContainer) {
@@ -22,7 +25,7 @@ const main = async () => {
       // Start with the Home link
       breadcrumbContainer.innerHTML = '<a href="index.html"><i class="fas fa-home"></i> Home</a> &gt; ';
 
-      // Get current page name
+      // Get current page name from URL
       const currentUrl = window.location.pathname;
       console.log("Current URL:", currentUrl);
 
@@ -68,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log("DOM fully loaded, running main script...");
   main();
 });
+
 
 
 

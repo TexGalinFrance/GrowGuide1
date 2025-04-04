@@ -218,14 +218,14 @@ nav ul li a:hover {
 
 /* Individual banner background images */
 #ornamental-banner {
-    background-image: url('flowers2.svg');
+    background-image: url('./flowers2.svg');
     background-size: cover;
     background-position: center;
     background-color: ghostwhite;
 }
 
 #edible-banner {
-    background-image: url('veggie.svg');
+    background-image: url('./veggie.svg');
     background-size: cover;
     background-position: center;
     background-color: ghostwhite;

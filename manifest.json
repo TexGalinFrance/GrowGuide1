@@ -22,7 +22,7 @@
       "name": "GrowGuide",
       "description": "Explore plants suitable for sunny or shady conditions",
       "resources": {
-          "folder": "resources"
+          "folder": "my-experience"
     }
   }
  ]
